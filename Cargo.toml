@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.71"
 clap = { version = "4.2.7", features = ["derive"] }
-minijinja = { version = "0.34.0", features = ["source"] }
+minijinja = { git = "https://github.com/mitsuhiko/minijinja.git", version = "1.0.0-alpha.1", features = ["loader"] }
 serde = { version = "1.0.163", features = ["derive"] }
 serde_yaml = "0.9.21"
 

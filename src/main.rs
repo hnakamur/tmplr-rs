@@ -7,7 +7,7 @@ use std::{
 
 use anyhow::{anyhow, Context, Result};
 use clap::Parser;
-use minijinja::{Environment, Error, ErrorKind, Source};
+use minijinja::{Environment, Error, ErrorKind};
 use serde_yaml::Value;
 
 #[derive(Parser, Debug)]
@@ -28,7 +28,6 @@ struct Args {
 
 fn main() -> Result<()> {
     let args = Args::parse();
-
     let template_path = current_dir()?.join(&args.tmpl);
     let yaml_path = &args.var;
 
@@ -36,9 +35,8 @@ fn main() -> Result<()> {
     env.set_undefined_behavior(minijinja::UndefinedBehavior::Strict);
 
     let template_dir = template_path.parent().unwrap().to_owned();
-    env.set_source(Source::with_loader(move |name| {
+    env.set_loader(move |name| {
         let path = template_dir.join(name);
-
         match fs::read_to_string(path) {
             Ok(result) => Ok(Some(result)),
             Err(err) => {
@@ -50,7 +48,7 @@ fn main() -> Result<()> {
                 Err(Error::new(ErrorKind::TemplateNotFound, msg).with_source(err))
             }
         }
-    }));
+    });
 
     let template_file = template_path
         .as_path()
