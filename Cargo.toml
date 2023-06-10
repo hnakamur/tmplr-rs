@@ -15,3 +15,17 @@ serde_yaml = "0.9.21"
 [profile.release]
 lto = true
 codegen-units = 1
+
+[package.metadata.deb]
+maintainer = "Hiroaki Nakamura <hnakamur@gmail.com>"
+copyright = "2023, Hiroaki Nakamura <hnakamur@gmail.com>"
+license-file = ["LICENSE"]
+extended-description = """\
+A command line tool to expand a MiniJinja template file
+using variables in a YAML file."""
+depends = "$auto"
+section = "utility"
+priority = "optional"
+assets = [
+    ["target/x86_64-unknown-linux-musl/release/tmplr", "usr/bin/", "755"],
+]
