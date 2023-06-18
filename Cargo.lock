@@ -221,8 +221,8 @@ checksum = "aec276c09560ce4447087aaefc19eb0c18d97e31bd05ebac38881c4723400c40"
 
 [[package]]
 name = "minijinja"
-version = "1.0.0-alpha.1"
-source = "git+https://github.com/mitsuhiko/minijinja.git#3a7cf24828a2dbbe779b9a9cc83886d84aadc464"
+version = "1.0.0"
+source = "git+https://github.com/mitsuhiko/minijinja.git#95eb8448d9c4ac706a8c35ad040ee9aac7e1cd3c"
 dependencies = [
  "memo-map",
  "self_cell",
